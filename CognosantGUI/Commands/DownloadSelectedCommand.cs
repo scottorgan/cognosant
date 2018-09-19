@@ -1,0 +1,83 @@
+﻿using CognosantGUI.ViewModels;
+using Common;
+using System;
+using System.Windows;
+using System.Windows.Input;
+
+namespace CognosantGUI.Commands
+{
+    class DownloadSelectedCommand : ICommand
+    {
+        private ReportVM reportVM;
+
+        public DownloadSelectedCommand(ReportVM viewModel)
+        {
+            reportVM = viewModel;
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return (reportVM.SelectedItem != null && reportVM.Status == "Ready.");
+        }
+
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
+        public async void Execute(object parameter)
+        {
+            reportVM.Status = "Authenticating...";
+            bool authenticated = await IO.HttpConnect(IO.ConstructLogin());
+
+            if (authenticated)
+            {
+                reportVM.Status = "Generating Report...";
+                string requestUrl = IO.RefactorUrl(reportVM.SelectedItem.Url);
+                string resultUrl = await IO.HttpGo(requestUrl);
+
+                if (reportVM.DebugMode)
+                {
+                    reportVM.Payload = resultUrl;
+                }
+
+                while (resultUrl.Contains("\"m_sStatus\": \"working\""))
+                {
+                    reportVM.Status = "Waiting for Report to Complete";
+                    var postData = IO.GetPostData(resultUrl);
+                    System.Threading.Thread.Sleep(3000);
+                    resultUrl = await IO.HttpPost(SettingsVM.Instance.UserSettings.Url + "/ibmcognos/cgi-bin/cognos.cgi", postData);
+                }
+
+                if (resultUrl.Contains(@"var sURL"))
+                {
+                    reportVM.Status = "Downloading...";
+                    await IO.DownloadFile(IO.ExtractDownloadLink(resultUrl), reportVM.SelectedItem.Path);
+
+                    reportVM.Status = "Ready.";
+                    CommandManager.InvalidateRequerySuggested();
+                }
+                else if (resultUrl.Contains("\"m_sStatus\": \"prompting\"") || resultUrl.Contains("&quot;m_sStatus&quot;: &quot;prompting&quot;"))
+                {
+                    MessageBox.Show("The report prompted for additional information. Please modify the report configuration in Cognos.", "ERROR: Prompt(s) detected", MessageBoxButton.OK);
+
+                    reportVM.Status = "Ready.";
+                    CommandManager.InvalidateRequerySuggested();
+                }
+                else
+                {
+                    throw new Exception("Unknown Response from Cognos Server.");
+                }
+            }
+            else
+            {
+                string title = "Login Failure";
+                string message = "Unable to login to the Cognos server.  Verify that your Username, Password & Data Source are correct and ensure that Cognos is available";
+                MessageBoxButton buttons = MessageBoxButton.OK;
+                MessageBox.Show(message, title, buttons);
+                reportVM.Status = "Ready.";
+            }                        
+        }
+    }
+}
