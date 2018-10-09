@@ -12,11 +12,9 @@ namespace CognosantGUI.ViewModels
 {
     public class ReportVM : ReportBaseVM
     {
-        private string payload, status;
-        public bool DebugMode { get; set; }
+        private string status;
         public Func<string, string, bool> ConfirmationDialog { get; set; }
         public ICommand AddReport { get; set; }
-        public ICommand Debug { get; set; }
         public ICommand DownloadAll { get; set; }
         public ICommand DownloadSelected { get; set; }
         public ICommand EditReport { get; set; }
@@ -26,22 +24,11 @@ namespace CognosantGUI.ViewModels
         public ReportVM()
         {
             AddReport = new AddReportCommand(this);
-            Debug = new DebugCommand(this);
             DownloadAll = new DownloadAllCommand(this);
             DownloadSelected = new DownloadSelectedCommand(this);
             EditReport = new EditReportCommand(this);
             RemoveReport = new RemoveReportCommand(this);
             this.Status = "Ready.";
-        }
-
-        public string Payload
-        {
-            get { return payload; }
-            set
-            {
-                payload = value;
-                OnPropertyChanged("Payload");
-            }
         }
 
         public string Status

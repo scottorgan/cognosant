@@ -59,17 +59,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\AddReportCommand.cs" />
-    <Compile Include="Commands\DebugCommand.cs" />
     <Compile Include="Commands\DownloadAllCommand.cs" />
     <Compile Include="Commands\DownloadSelectedCommand.cs" />
     <Compile Include="Commands\EditReportCommand.cs" />
     <Compile Include="Commands\RemoveReportCommand.cs" />
     <Compile Include="Utilities\GuiIO.cs" />
-    <Compile Include="Utilities\WebBrowserExtension.cs" />
     <Compile Include="ViewModels\ReportVM.cs" />
-    <Compile Include="Views\DebugWindow.xaml.cs">
-      <DependentUpon>DebugWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\DetailsView.xaml.cs">
       <DependentUpon>DetailsView.xaml</DependentUpon>
     </Compile>
@@ -88,10 +83,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\DebugWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\DetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

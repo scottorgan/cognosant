@@ -37,11 +37,6 @@ namespace CognosantGUI.Commands
                 string requestUrl = IO.RefactorUrl(reportVM.SelectedItem.Url);
                 string resultUrl = await IO.HttpGo(requestUrl);
 
-                if (reportVM.DebugMode)
-                {
-                    reportVM.Payload = resultUrl;
-                }
-
                 while (resultUrl.Contains("\"m_sStatus\": \"working\""))
                 {
                     reportVM.Status = "Waiting for Report to Complete";
