@@ -6,27 +6,8 @@ namespace Common.Models
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string domain, dsn, url, password, username;
+        private string dsn, url, password, username;
         private bool overwriteUrl;
-
-        public string Domain
-        {
-            get
-            {
-                if (domain != null)
-                {
-                    return domain;
-                } else
-                {
-                    return "APSCN";
-                }
-            }
-            set
-            {
-                domain = value;
-                OnPropertyChanged("Domain");
-            }
-        }
 
         public string Dsn
         {

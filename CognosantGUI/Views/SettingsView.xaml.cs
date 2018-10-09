@@ -30,7 +30,6 @@ namespace CognosantGUI.Views
                 if (UrlCheckBox.IsChecked == true) { SettingsVM.Instance.UserSettings.OverwriteUrl = true; }
                 else { SettingsVM.Instance.UserSettings.OverwriteUrl = false; }
 
-                SettingsVM.Instance.UserSettings.Domain = DomainBox.Text;
                 SettingsVM.Instance.UserSettings.Dsn = DsnBox.Text;
                 SettingsVM.Instance.UserSettings.Password = IO.EncryptString(IO.ToSecureString(UserPasswordBox.Password));
                 SettingsVM.Instance.UserSettings.Url = UrlBox.Text;
@@ -64,11 +63,6 @@ namespace CognosantGUI.Views
             else if (string.IsNullOrWhiteSpace(UserPasswordBox.Password))
             {
                 MessageBox.Show("Password is a required setting.", "Error", MessageBoxButton.OK);
-                return false;
-            }
-            else if (string.IsNullOrWhiteSpace(DomainBox.Text))
-            {
-                MessageBox.Show("Domain is a required setting.", "Error", MessageBoxButton.OK);
                 return false;
             }
             else if (string.IsNullOrWhiteSpace(UrlBox.Text))

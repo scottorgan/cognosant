@@ -50,7 +50,6 @@ namespace Common
                 } else
                 {
                     // config file does not exist... load suggested defaults
-                    UserSettings.Domain = "APSCN";
                     UserSettings.Dsn = null;
                     UserSettings.OverwriteUrl = true;
                     UserSettings.Password = null;

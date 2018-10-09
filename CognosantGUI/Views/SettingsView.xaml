@@ -7,7 +7,7 @@
         xmlns:viewModels="clr-namespace:Common"
         mc:Ignorable="d"
         Title="Settings"
-        Height="480" Width="455" ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
+        Height="420" Width="455" ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
         Background="#1E1E1E"
         Loaded="OnLoad"
         >
@@ -23,7 +23,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="75" />
             <RowDefinition Height="40" />
-            <RowDefinition Height="40" />
             <RowDefinition Height="60" />
             <RowDefinition Height="40" />
             <RowDefinition Height="60" />
@@ -33,22 +32,20 @@
         <!-- Labels -->
         <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom">Username:</Label>
         <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Password:</Label>
-        <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Domain:</Label>
-        <Label Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Web Address:</Label>
-        <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Bottom" >eSchool Data Source Name:</Label>
-        <Label Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Overwite Report URL:</Label>
+        <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Web Address:</Label>
+        <Label Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" >eSchool Data Source Name:</Label>
+        <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Overwite Report URL:</Label>
 
         <!-- Boxes -->
         <TextBox Grid.Column="1" Grid.Row="0" Height="23" Width="226" Margin="4,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="{Binding Path=UserSettings.Username, Mode=OneWay}" Name="UsernameBox" />
         <PasswordBox Grid.Column="1" Grid.Row="1" Height="23" Width="226" Margin="4,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#181818" Foreground="#CCCCCC" Name="UserPasswordBox" />
-        <TextBox Grid.Column="1" Grid.Row="2" Height="23" Width="226" Margin="4,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="{Binding Path=UserSettings.Domain, Mode=OneTime}" Name="DomainBox" />
-        <TextBox Grid.Column="1" Grid.Row="3" Height="23" Width="226" Margin="4,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="{Binding Path=UserSettings.Url, Mode=OneWay}" Name="UrlBox"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Height="23" Width="226" Margin="4,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="{Binding Path=UserSettings.Dsn, Mode=OneWay}" Name="DsnBox"/>
-        <CheckBox Grid.Column="1" Grid.Row="5" Margin="4,0,0,4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="UrlCheckBox" IsChecked="{Binding Path=UserSettings.OverwriteUrl, Mode=OneWay}" />
+        <TextBox Grid.Column="1" Grid.Row="2" Height="23" Width="226" Margin="4,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="{Binding Path=UserSettings.Url, Mode=OneWay}" Name="UrlBox"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Height="23" Width="226" Margin="4,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="{Binding Path=UserSettings.Dsn, Mode=OneWay}" Name="DsnBox"/>
+        <CheckBox Grid.Column="1" Grid.Row="4" Margin="4,0,0,4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="UrlCheckBox" IsChecked="{Binding Path=UserSettings.OverwriteUrl, Mode=OneWay}" />
 
         <!-- Buttons -->
-        <Button Grid.Column="1" Grid.Row="6" Name="OkButton" Height="23" Width="100" Margin="0,0,145,0" HorizontalAlignment="Right" Content="_OK" Click="OkButton_Click" />
-        <Button Grid.Column="1" Grid.Row="6" Name="CancelButton" Height="23" Width="100" HorizontalAlignment="Right" Margin="0,0,30,0" Content="_Cancel" Click="CancelButton_Click" />
+        <Button Grid.Column="1" Grid.Row="5" Name="OkButton" Height="23" Width="100" Margin="0,0,145,0" HorizontalAlignment="Right" Content="_OK" Click="OkButton_Click" />
+        <Button Grid.Column="1" Grid.Row="5" Name="CancelButton" Height="23" Width="100" HorizontalAlignment="Right" Margin="0,0,30,0" Content="_Cancel" Click="CancelButton_Click" />
         
     </Grid>
 </Window>

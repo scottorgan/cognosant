@@ -20,8 +20,7 @@ namespace Common
         {
             Credentials = new NetworkCredential(
                 SettingsVM.Instance.UserSettings.Username,
-                ToInsecureString(DecryptString(SettingsVM.Instance.UserSettings.Password)),
-                SettingsVM.Instance.UserSettings.Domain
+                ToInsecureString(DecryptString(SettingsVM.Instance.UserSettings.Password))
             )
         };
         private static HttpClient httpClient = new HttpClient(httpClientHandler);
@@ -134,7 +133,6 @@ namespace Common
         {
             if (string.IsNullOrWhiteSpace(SettingsVM.Instance.UserSettings.Username)) { return false; }
             else if (string.IsNullOrWhiteSpace(SettingsVM.Instance.UserSettings.Password)) { return false; }
-            else if (string.IsNullOrWhiteSpace(SettingsVM.Instance.UserSettings.Domain)) { return false; }
             else if (string.IsNullOrWhiteSpace(SettingsVM.Instance.UserSettings.Dsn)) { return false; }
             else if (string.IsNullOrWhiteSpace(SettingsVM.Instance.UserSettings.Url)) { return false; }
             else { return true; }
