@@ -63,8 +63,7 @@ namespace CognosantGUI
 
         private void HelpButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Help Feature is not implemented yet.", "Cognosant", MessageBoxButton.OK);
-            // System.Diagnostics.Process.Start("http://scottorgan.net/cognosant");
+            System.Diagnostics.Process.Start("http://scottorgan.net/cognosant.html");
         }
     }
 }
